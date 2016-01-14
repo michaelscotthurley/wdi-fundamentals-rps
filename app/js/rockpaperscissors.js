@@ -4,7 +4,7 @@
 'use strict';
 
 function getInput() {
-    console.log("Please choose either 'rock', 'paper', or 'scissors'.")
+    console.log("Please choose either 'rock', 'paper', or 'scissors'.");
     return prompt();
 }
 function randomPlay() {
@@ -41,7 +41,7 @@ function getWinner(playerMove,computerMove) {
     // Assume that the only values playerMove and computerMove can have are 'rock', 'paper', and 'scissors'.
     // The rules of the game are that 'rock' beats 'scissors', 'scissors' beats 'paper', and 'paper' beats 'rock'.
     if (playerMove == "rock" && computerMove == "scissors"){
-        winner = "player"
+        winner = "player";
     }
     else if (playerMove == "rock" && computerMove == "paper"){
         winner = "computer";
@@ -71,9 +71,11 @@ function getWinner(playerMove,computerMove) {
 }
 
 function playToFive() {
-    console.log("Let's play Rock, Paper, Scissors");
+    console.log("Let's play Rock, Paper, Scissors! The first to win five rounds wins the game.");
     var playerWins = 0;
     var computerWins = 0;
+    var currentWinner;
+    var currentWinnerText;
     var gameWinner;
     // Write code that plays 'Rock, Paper, Scissors' until either the player or the computer has won five times.
     while (playerWins < 5 && computerWins < 5) {
@@ -82,20 +84,37 @@ function playToFive() {
         currentWinner = getWinner(playerMove, computerMove);
         if (currentWinner == "player") {
             playerWins += 1;
+            currentWinnerText = "Player wins this round! Good job!";
         }
         else if (currentWinner == "computer") {
             computerWins +=1;
+            currentWinnerText = "Computer wins this round! Better luck next time.";
+        }
+        else if (currentWinner == "tie") {
+            currentWinnerText = "This round is a tie.";
+        }
+        else {
+            currentWinnerText = "Please enter a valid selection.";
         }
         console.log('Player chose ' + playerMove + ' while Computer chose ' + computerMove);
-        console.log('The score is currently ' + playerWins + ' to ' + computerWins + '\n');
+        console.log(currentWinnerText);
+        console.log('The score is currently Player: ' + playerWins + ' to Computer: ' + computerWins + '\n');
     }
-    return [playerWins, computerWins];
+    if (playerWins > computerWins) {
+        gameWinner = "Congratulations! You have won the game!";
+    }
+    else {
+        gameWinner = "Sorry, but the Computer won the game. Try again!";
+    }
+    return "The final score was Player: " + playerWins + " to Computer: " + computerWins + ". " + gameWinner;
 }
 
 function playToNum(num) {
     console.log("Let's play Rock, Paper, Scissors");
     var playerWins = 0;
     var computerWins = 0;
+    var currentWinner;
+    var currentWinnerText;
     var gameWinner;
     // Write code that plays 'Rock, Paper, Scissors' until either the player or the computer has won five times.
     while (playerWins < num && computerWins < num) {
@@ -104,12 +123,27 @@ function playToNum(num) {
         currentWinner = getWinner(playerMove, computerMove);
         if (currentWinner == "player") {
             playerWins += 1;
+            currentWinnerText = "Player wins this round! Good job!";
         }
         else if (currentWinner == "computer") {
             computerWins +=1;
+            currentWinnerText = "Computer wins this round! Better luck next time.";
+        }
+        else if (currentWinner == "tie") {
+            currentWinnerText = "This round is a tie.";
+        }
+        else {
+            currentWinnerText = "Please enter a valid selection.";
         }
         console.log('Player chose ' + playerMove + ' while Computer chose ' + computerMove);
-        console.log('The score is currently ' + playerWins + ' to ' + computerWins + '\n');
+        console.log(currentWinnerText);
+        console.log('The score is currently Player: ' + playerWins + ' to Computer: ' + computerWins + '\n');
     }
-    return [playerWins, computerWins];
+    if (playerWins > computerWins) {
+        gameWinner = "Congratulations! You have won the game!";
+    }
+    else {
+        gameWinner = "Sorry, but the Computer won the game. Try again!";
+    }
+    return "The final score was Player: " + playerWins + " to Computer: " + computerWins + ". " + gameWinner;
 }
